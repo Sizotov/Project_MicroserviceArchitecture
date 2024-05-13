@@ -1,0 +1,24 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8762/eureka
+# suppress inspection "UnusedProperty"
+server:
+# suppress inspection "UnusedProperty"
+    port: 8764
+# suppress inspection "UnusedProperty"
+spring:
+    application:
+        name: Gateway
+    cloud:
+        gateway:
+            routes:
+                - id: RestService1
+                  uri: http://localhost:8083/
+
+                  predicates:
+                    - Path=/service1/**
+                - id: RestService2
+                  uri: http://localhost:8084/
+                  predicates:
+                    - Path=/service2/**
